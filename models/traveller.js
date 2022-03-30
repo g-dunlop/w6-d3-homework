@@ -27,14 +27,19 @@ Traveller.prototype.getJourneysByMinDistance = function (minDistance) {
 };
 
 Traveller.prototype.calculateTotalDistanceTravelled = function () {
+  
   result = this.journeys.reduce((runningTotal, journey) => {
-    return runningTotal += journey.length;
-  }); return result
+    return runningTotal += journey.distance;
+  }, 0); return result;
 };
 
 Traveller.prototype.getUniqueModesOfTransport = function () {
-
-};
+  let transports = this.journeys.map((journey) => {
+    return journey.transport;
+  })
+  result = [... new Set(transports)];
+  return result;
+}; 
 
 
 module.exports = Traveller;
